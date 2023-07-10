@@ -1,7 +1,7 @@
 
 module tt_um_neuron (
     input wire               clk,
-    input wire               reset,
+    input wire               rst_n,
     input wire [5:0]         in_current,
     input wire               ena,
     output reg               spike
@@ -9,6 +9,7 @@ module tt_um_neuron (
 
     reg  [5:0] state, threshold;
     wire [5:0] state_hist;
+    wire reset = ! rst_n;
 
     assign state_hist = in_current + (spike ? 0 : (state >> 1)); // scale by 1/2
 

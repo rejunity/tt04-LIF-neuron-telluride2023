@@ -28,19 +28,19 @@ module tb ();
     wire ena;
 
     // instantiate the DUT with lower MAX_COUNT for a faster sim
-    tt_um_seven_segment_seconds #(.MAX_COUNT(1000)) tt_um_seven_segment_seconds (
-        `ifdef GL_TEST
-            .vccd1( 1'b1),
-            .vssd1( 1'b0),
-        `endif
-        .ui_in      (ui_in),    // Dedicated inputs
-        .uo_out     (uo_out),   // Dedicated outputs
-        .uio_in     (uio_in),   // IOs: Input path
-        .uio_out    (uio_out),  // IOs: Output path
-        .uio_oe     (uio_oe),   // IOs: Enable path (active high: 0=input, 1=output)
-        .ena        (ena),      // enable - goes high when design is selected
-        .clk        (clk),      // clock
-        .rst_n      (rst_n)     // not reset
-        );
+    // tt_um_seven_segment_seconds #(.MAX_COUNT(1000)) tt_um_seven_segment_seconds (
+    //     `ifdef GL_TEST
+    //         .vccd1( 1'b1),
+    //         .vssd1( 1'b0),
+    //     `endif
+    //     .ui_in      (ui_in),    // Dedicated inputs
+    //     .uo_out     (uo_out),   // Dedicated outputs
+    //     .uio_in     (uio_in),   // IOs: Input path
+    //     .uio_out    (uio_out),  // IOs: Output path
+    //     .uio_oe     (uio_oe),   // IOs: Enable path (active high: 0=input, 1=output)
+    //     .ena        (ena),      // enable - goes high when design is selected
+    //     .clk        (clk),      // clock
+    //     .rst_n      (rst_n)     // not reset
+    //     );
 
 endmodule

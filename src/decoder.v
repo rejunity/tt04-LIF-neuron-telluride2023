@@ -9,9 +9,6 @@ module tt_um_neuron (
     input  wire       clk,      // clock
     input  wire       rst_n     // reset_n - low to reset
 
-    input wire               rst_n,
-    input wire [7:0]         ui_in,
-    output reg               spike
 );
 
     assign in_current = ui_in[5:0];

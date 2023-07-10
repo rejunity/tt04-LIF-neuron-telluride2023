@@ -1,5 +1,5 @@
 
-module neuron (
+module tt_um_neuron (
     input wire               clk,
     input wire               reset,
     input wire [5:0]         in_current,

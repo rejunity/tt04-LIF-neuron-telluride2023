@@ -3,7 +3,7 @@ module adder_tree
     parameter   n_stage = 5     // Minumum is 1 stage
 )
 (
-    input   [((2**n_stage+1)-1):0]  wx,
+    input   [(2**(n_stage+1)-1):0]  wx,
     output  [(n_stage+1):0]         y_out
 );
     genvar i, j;

@@ -19,6 +19,13 @@ async def test_neuron(dut):
     await ClockCycles(dut.clk, 10)
     dut.rst_n.value = 1
 
+    dut.ui_in.value = 1;
+
+    dut._log.info("accumulate")
+    for i in range(10):
+        await ClockCycles(dut.clk, 1)
+        print (dut.uo_out)
+
     # dut._log.info("check all segments")
     # for i in range(10):
     #     dut._log.info("check segment {}".format(i))

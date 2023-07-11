@@ -3,10 +3,10 @@ module mem_potential_acc #(parameter n_stage = 6) (
     input [(n_stage+1):0] sum_wx,
     input [(n_stage+1):0] minus_teta,
     input was_spike,
-    output reg [(n_stage+1):0] u_out
+    output [(n_stage+1):0] u_out
 );
 
-    reg [(n_stage+2):0] s_out_1, s_out_2;
+    wire [(n_stage+2):0] s_out_1, s_out_2;
 
     // Calculate Adder1 = beta*u(t-1) + sum[w*x(t)]
     nbit_adder #(n_stage+2) Adder_1 (
@@ -23,11 +23,9 @@ module mem_potential_acc #(parameter n_stage = 6) (
     );
 
     // Assign u_out based on was_spike
-    always @(posedge clk) begin
-        if (was_spike)
-            u_out <= s_out_1[(n_stage+1):0];
-        else
-            u_out <= s_out_2[(n_stage+1):0];
+    assign u_out = (was_spike ?
+        s_out_1[(n_stage+1):0] : 
+        s_out_2[(n_stage+1):0]);
     end
 
 endmodule

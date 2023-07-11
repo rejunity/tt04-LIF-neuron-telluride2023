@@ -14,7 +14,7 @@ module adder_tree
     end
 
     // Stage 1
-    for (j == 0; j < 2**(n_stage-1); j = j+1) begin : first_stage
+    for (j = 0; j < 2**(n_stage-1); j = j+1) begin : first_stage
         nbit_adder #(2) adder (
             .A(wx[(4*j+1):(4*j+0)]),
             .B(wx[(4*j+3):(4*j+2)]),
@@ -24,7 +24,7 @@ module adder_tree
 
     // Remaing stages
     for (i = 1; i < n_stage; i = i+1) begin : stage_loop
-        for (j == 0; j < 2**(n_stage-1-i); j = j+1) begin : stage
+        for (j = 0; j < 2**(n_stage-1-i); j = j+1) begin : stage
             nbit_adder #(i+2) adder (
                 .A(connection[i-1].s[2*j+0]),
                 .B(connection[i-1].s[2*j+1]),

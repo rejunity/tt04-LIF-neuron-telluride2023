@@ -3,7 +3,7 @@ module spike_generator #(parameter n_stage = 2) (
     input [(n_stage+1):0] minus_teta,
     output is_spike
 );
-    reg [(n_stage+2):0] s_out;
+    wire [(n_stage+2):0] s_out;
 
     // Calculate Adder_1 = u + minus_teta
     nbit_adder #(n_stage+2) Adder_1 (

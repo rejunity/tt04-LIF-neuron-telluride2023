@@ -13,7 +13,6 @@ module spike_generator #(parameter n_stage = 2) (
     );
 
     // Assign is_spike based on s_out
-    assign is_spike = ~s_out[(n_stage+2)];
+    assign is_spike = s_out[(n_stage+2)];
 
 endmodule
-

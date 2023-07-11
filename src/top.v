@@ -12,10 +12,10 @@ module tt_neuron (
 );
 
     localparam N_STAGES = 1;
-    assign x = ui_in[1:0];
-    assign uo_out[0] = spike;
-    assign uo_out[3:1] = u_out;
-    wire reset != rst_n;
+    wire [1:0] x = ui_in[1:0];
+    wire spike = uo_out[0];
+    wire u_out = uo_out[3:1];
+    wire reset = !rst_n;
 
     reg [1:0] w;
     reg [2:0] shift;
@@ -23,10 +23,10 @@ module tt_neuron (
     reg [2:0] minus_teta;
     reg was_spike;
 
-    neuron #(.n_stage=N_STAGES) neuron_uut (
+    neuron #(.n_stage(N_STAGES)) neuron_uut (
         .w(w),
         .x(x),
-        .shift(shift),reset
+        .shift(shift),
         .previus_u(previus_u),
         .minus_teta(minus_teta),
         .was_spike(was_spike),

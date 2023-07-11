@@ -3,28 +3,6 @@ module nbit_adder #(parameter n = 4) (
     input [(n-1):0] B,
     output [n:0] S
 );
-
-    // Define full adder module
-    module full_adder (
-        input A,
-        input B,
-        input Cin,
-        output S,
-        output Cout
-    );
-        assign {Cout, S} = A + B + Cin;
-    endmodule
-
-    // Define half adder module
-    module half_adder (
-        input A,
-        input B,
-        output S,
-        output Cout
-    );
-        assign {Cout, S} = A + B;
-    endmodule
-
     // Define internal signals
     logic [n:0] Cout, Cin;
 

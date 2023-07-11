@@ -6,16 +6,6 @@ module full_adder (
     output Cout
 );
 
-    // Define half adder module
-    module half_adder (
-        input A,
-        input B,
-        output S,
-        output Cout
-    );
-        assign {Cout, S} = A + B;
-    endmodule
-
     // Define internal signals
     logic ha1_S, ha1_Cout, ha2_Cout;
 

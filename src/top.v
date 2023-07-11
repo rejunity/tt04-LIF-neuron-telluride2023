@@ -39,11 +39,11 @@ module tt_neuron (
         .is_spike(spike)
     );
 
-    always @(posedge clk ) begin
+    always @(posedge clk) begin
         if (reset) begin
             w <= 1;
             shift <= 0;
-            minus_teta <= -2;
+            minus_teta <= -5;
             previus_u <= 0;
             was_spike <= 0;
         end else begin

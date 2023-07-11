@@ -10,7 +10,7 @@ module adder_tree
     generate
     // Generate connections
     for (i = 0; i < n_stage; i = i+1) begin : connection
-        wire [(i+2):0] s [(2**(n_stage-1-i)-1):0];
+        wire [(i+2):0] sum [(2**(n_stage-1-i)-1):0]; // partial sum
     end
 
     // Stage 1
@@ -18,7 +18,7 @@ module adder_tree
         nbit_adder #(2) adder (
             .A(wx[(4*j+1):(4*j+0)]),
             .B(wx[(4*j+3):(4*j+2)]),
-            .S(connection[0].s[j])
+            .S(connection[0].sum[j])
         );
     end
 
@@ -26,14 +26,14 @@ module adder_tree
     for (i = 1; i < n_stage; i = i+1) begin : stage_loop
         for (j = 0; j < 2**(n_stage-1-i); j = j+1) begin : stage
             nbit_adder #(i+2) adder (
-                .A(connection[i-1].s[2*j+0]),
-                .B(connection[i-1].s[2*j+1]),
-                .S(connection[i].s[j])
+                .A(connection[i-1].sum[2*j+0]),
+                .B(connection[i-1].sum[2*j+1]),
+                .S(connection[i].sum[j])
             );
         end
     end
 
-    assign y_out = connection[n_stage-1];
+    assign y_out = connection[n_stage-1].sum[0];
     endgenerate
 
 endmodule

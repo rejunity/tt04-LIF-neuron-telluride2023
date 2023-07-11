@@ -6,15 +6,6 @@ module mem_potential_acc #(parameter n_stage = 6) (
     output reg [(n_stage+1):0] u_out
 );
 
-    // Define n-bit adder module
-    module nbit_adder #(parameter n = 4) (
-        input [(n-1):0] A,
-        input [(n-1):0] B,
-        output [n:0] S
-    );
-        assign S = A + B;
-    endmodule
-
     reg [(n_stage+2):0] s_out_1, s_out_2;
 
     // Calculate Adder1 = beta*u(t-1) + sum[w*x(t)]

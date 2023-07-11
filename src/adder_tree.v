@@ -2,16 +2,6 @@ module adder_tree #(parameter n_stage = 5) (
     input [(2*(2**n_stage))-1:0] wx,
     output [(n_stage+1):0] y_out
 );
-
-    // Define n-bit adder module
-    module nbit_adder #(parameter n = 4) (
-        input [(n-1):0] A,
-        input [(n-1):0] B,
-        output [n:0] S
-    );
-        assign S = A + B;
-    endmodule
-
     // Define internal signal type
     typedef logic [(2*(n_stage+2)*(2**(n_stage-1))-1):0] INTERNAL;
     INTERNAL s_out;

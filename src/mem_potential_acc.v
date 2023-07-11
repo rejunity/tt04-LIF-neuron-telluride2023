@@ -26,7 +26,5 @@ module mem_potential_acc #(parameter n_stage = 6) (
     assign u_out = (was_spike ?
         s_out_1[(n_stage+1):0] : 
         s_out_2[(n_stage+1):0]);
-    end
 
 endmodule
-

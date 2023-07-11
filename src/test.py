@@ -19,9 +19,14 @@ async def test_neuron(dut):
     await ClockCycles(dut.clk, 10)
     dut.rst_n.value = 1
 
-    dut.ui_in.value = 1;
 
     dut._log.info("accumulate")
+    dut.ui_in.value = 1;
+    for i in range(30):
+        await ClockCycles(dut.clk, 1)
+        print (dut.uo_out)
+
+    dut.ui_in.value = 0;
     for i in range(10):
         await ClockCycles(dut.clk, 1)
         print (dut.uo_out)

@@ -6,17 +6,6 @@ module decay_potential #(parameter n_stage = 10) (
 
     wire [(n_stage+1):0] gamma_u, not_gamma_u, Cout;
 
-    // Define full adder module
-    module full_adder (
-        input A,
-        input B,
-        input Cin,
-        output S,
-        output Cout
-    );
-        assign {Cout, S} = A + B + Cin;
-    endmodule
-
     // Assign gamma_u based on shift
     assign gamma_u = (shift == 3'b001) ? u >> 1 :
                      (shift == 3'b010) ? u >> 2 :

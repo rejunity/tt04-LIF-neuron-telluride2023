@@ -14,7 +14,7 @@ module tt_neuron (
     localparam N_STAGES = 1;
     wire [1:0] x = ui_in[1:0];
     wire spike = uo_out[0];
-    wire u_out = uo_out[3:1];
+    wire [2:0] u_out = uo_out[3:1];
     wire reset = !rst_n;
 
     reg [1:0] w;

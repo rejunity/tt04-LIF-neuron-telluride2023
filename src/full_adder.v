@@ -7,7 +7,9 @@ module full_adder (
 );
 
     // Define internal signals
-    logic ha1_S, ha1_Cout, ha2_Cout;
+    wire ha1_S;
+    wire ha1_Cout;
+    wire ha2_Cout;
 
     // Instantiate half adders
     half_adder ha1 (

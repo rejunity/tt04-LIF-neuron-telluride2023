@@ -28,3 +28,4 @@ module mem_potential_acc #(parameter n_stage = 6) (
         s_out_2[(n_stage+1):0]);
 
 endmodule
+

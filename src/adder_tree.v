@@ -32,8 +32,8 @@ module adder_tree
             );
         end
     end
-    endgenerate
 
     assign y_out = connection[n_stage-1];
+    endgenerate
 
 endmodule

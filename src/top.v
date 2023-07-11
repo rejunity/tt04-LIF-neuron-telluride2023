@@ -10,17 +10,22 @@ module tt_neuron (
     input  wire       rst_n     // reset_n - low to reset
 
 );
-
-    localparam N_STAGES = 1;
-    wire [1:0] x = ui_in[1:0];
-    wire spike = uo_out[0];
-    wire [2:0] u_out = uo_out[3:1];
     wire reset = !rst_n;
 
-    reg [1:0] w;
+    localparam N_STAGES = 2;
+    localparam INPUTS = 2**N_STAGES;
+    localparam WEIGHTS = INPUTS;
+    localparam OUTPUT_PRECISION = N_STAGES+2;
+
+    wire [INPUTS-1:0] x = ui_in[INPUTS-1:0];        // # inputs
+    wire spike = uo_out[0];
+    wire [OUTPUT_PRECISION-1:0] u_out =
+                        uo_out[OUTPUT_PRECISION:1]; // output precision
+
+    reg [WEIGHTS-1:0] w;                            // # weights
+    reg [OUTPUT_PRECISION-1:0] previus_u;           // output precision
+    reg [OUTPUT_PRECISION-1:0] minus_teta;          // output precision
     reg [2:0] shift;
-    reg [2:0] previus_u;
-    reg [2:0] minus_teta;
     reg was_spike;
 
     neuron #(.n_stage(N_STAGES)) neuron_uut (

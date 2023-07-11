@@ -31,7 +31,8 @@ module tb ();
             .vccd1( 1'b1),
             .vssd1( 1'b0),
         `endif
-        .ui_in      (8'b1111_1111),    // Dedicated inputs
+        //.ui_in      (8'b1111_1111),    // Dedicated inputs
+        .ui_in      (ui_in),    // Dedicated inputs
         .uo_out     (uo_out),   // Dedicated outputs
         .uio_in     (uio_in),   // IOs: Input path
         .uio_out    (uio_out),  // IOs: Output path

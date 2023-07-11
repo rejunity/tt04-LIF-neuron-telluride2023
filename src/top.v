@@ -42,8 +42,8 @@ module tt_neuron (
     always @(posedge clk ) begin
         if (reset) begin
             w <= 1;
-            shift <= 1;
-            minus_teta <= 5; // max 2^3=8
+            shift <= 0;
+            minus_teta <= -2;
             previus_u <= 0;
             was_spike <= 0;
         end else begin

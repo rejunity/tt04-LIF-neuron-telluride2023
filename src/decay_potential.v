@@ -14,7 +14,7 @@ module decay_potential #(parameter n_stage = 10) (
                      (shift == 3'b101) ? u >> 5 :
                      (shift == 3'b110) ? u >> 6 :
                      (shift == 3'b111) ? u >> 7 :
-                     u;
+                     0; // no decay
 
     // Calculate not_gamma_u
     assign not_gamma_u = ~gamma_u;

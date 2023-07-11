@@ -3,16 +3,6 @@ module multiplier_stage #(parameter n_stage = 5) (
     input [(2**n_stage)-1:0] x,
     output [(2*(2**n_stage))-1:0] mult_out
 );
-
-    // Define multiplier module
-    module multiplier (
-        input xi,
-        input wi,
-        output [1:0] y
-    );
-        assign y = xi & wi;
-    endmodule
-
     // Generate instances of multiplier for each element in w and x
     genvar i;
     generate

@@ -41,7 +41,7 @@ module tt_neuron (
 
     always @(posedge clk) begin
         if (reset) begin
-            w <= 1;
+            w <= x; // load weights upon reset
             shift <= 0;
             minus_teta <= -5;
             previus_u <= 0;

@@ -4,7 +4,7 @@ module multiplier (
     output [1:0] y
 );
 
-    assign y[0] = xi & wi;
+    assign y[0] = xi;
     assign y[1] = xi & (~wi);
 
 endmodule

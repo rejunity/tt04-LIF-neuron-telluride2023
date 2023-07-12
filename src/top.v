@@ -1,3 +1,4 @@
+`define LARGE
 
 module tt_um_neuron (
     input  wire [7:0] ui_in,    // Dedicated inputs - connected to the input switches
@@ -11,8 +12,13 @@ module tt_um_neuron (
 
 );
     wire reset = !rst_n;
+    assign uio_oe = 0;
 
+`ifdef LARGE
     localparam N_STAGES = 5;
+`else
+    localparam N_STAGES = 2;
+`endif
     localparam INPUTS = 2**N_STAGES;
     localparam WEIGHTS = INPUTS;
     localparam OUTPUT_PRECISION = N_STAGES+2;
@@ -48,10 +54,14 @@ module tt_um_neuron (
             minus_teta <= -5;
             previus_u <= 0;
             was_spike <= 0;
-            //uio_oe = 0;
         end else begin
             was_spike <= spike;
             previus_u <= u_out;
+`ifdef LARGE
+            x <= { x[INPUTS-1:8], ui_in[7:0] };
+`else
+            x <= ui_in[INPUTS-1:0];
+`endif
         end
     end
 

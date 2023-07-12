@@ -11,25 +11,51 @@ async def test_neuron(dut):
     clock = Clock(dut.clk, 10, units="us")
     cocotb.start_soon(clock.start())
 
-    # reset
     dut._log.info("reset")
     dut.rst_n.value = 0
-    # set the compare value
-    dut.ui_in.value = 1
+    dut.ui_in.value = 0b1101 # load weights
     await ClockCycles(dut.clk, 10)
     dut.rst_n.value = 1
 
+    #dut.tt_neuron_uut.minus_teta.value = 0b1111;
 
     dut._log.info("accumulate")
-    dut.ui_in.value = 1;
-    for i in range(30):
+    dut.ui_in.value = 0b0001
+    for i in range(12):
         await ClockCycles(dut.clk, 1)
-        print (dut.uo_out)
 
-    dut.ui_in.value = 0;
-    for i in range(10):
+    dut.ui_in.value = 0b0011
+    for i in range(12):
         await ClockCycles(dut.clk, 1)
-        print (dut.uo_out)
+
+    dut.ui_in.value = 0b0111
+    for i in range(12):
+        await ClockCycles(dut.clk, 1)
+
+    dut.ui_in.value = 0b1111
+    for i in range(12):
+        await ClockCycles(dut.clk, 1)
+
+    dut.tt_neuron_uut.shift.value = 1;
+    for i in range(50):
+        await ClockCycles(dut.clk, 1)
+
+    dut.tt_neuron_uut.shift.value = 2;
+    for i in range(50):
+        await ClockCycles(dut.clk, 1)
+
+    dut.tt_neuron_uut.shift.value = 3;
+    for i in range(50):
+        await ClockCycles(dut.clk, 1)
+
+    dut.tt_neuron_uut.shift.value = 4;
+    for i in range(50):
+        await ClockCycles(dut.clk, 1)
+
+    dut.tt_neuron_uut.minus_teta.value = 0b0001;
+    dut.tt_neuron_uut.shift.value = 3;
+    for i in range(100):
+        await ClockCycles(dut.clk, 1)
 
     # dut._log.info("check all segments")
     # for i in range(10):

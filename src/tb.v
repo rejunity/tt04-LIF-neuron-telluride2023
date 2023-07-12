@@ -26,7 +26,7 @@ module tb ();
     wire rst_n;
     wire ena;
 
-    tt_neuron tt_neuron_uut (
+    tt_um_neuron tt_um_neuron_uut (
         `ifdef GL_TEST
             .vccd1( 1'b1),
             .vssd1( 1'b0),

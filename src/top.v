@@ -13,6 +13,7 @@ module tt_um_neuron (
 );
     wire reset = !rst_n;
     assign uio_oe = 0;
+    assign uo_out[7:1] = 0;
 
 `ifdef LARGE
     localparam N_STAGES = 6;
@@ -25,8 +26,8 @@ module tt_um_neuron (
 
     //wire [INPUTS-1:0] x = ui_in[INPUTS-1:0];      // # inputs
     wire spike = uo_out[0];
-    wire [OUTPUT_PRECISION-1:0] u_out =
-                        uo_out[OUTPUT_PRECISION:1]; // output precision
+    wire [OUTPUT_PRECISION-1:0] u_out;
+                        // uo_out[OUTPUT_PRECISION:1]; // output precision
 
     reg [INPUTS-1: 0] x;                            // # inputs
     reg [WEIGHTS-1:0] w;                            // # weights

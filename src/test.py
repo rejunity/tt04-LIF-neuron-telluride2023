@@ -17,8 +17,6 @@ async def test_neuron(dut):
     await ClockCycles(dut.clk, 10)
     dut.rst_n.value = 1
 
-    #dut.tt_neuron_uut.minus_teta.value = 0b1111;
-
     dut._log.info("accumulate")
     dut.ui_in.value = 0b0001
     for i in range(12):
@@ -36,24 +34,24 @@ async def test_neuron(dut):
     for i in range(12):
         await ClockCycles(dut.clk, 1)
 
-    dut.tt_neuron_uut.shift.value = 1;
+    dut.tt_um_neuron_uut.shift.value = 1;
     for i in range(50):
         await ClockCycles(dut.clk, 1)
 
-    dut.tt_neuron_uut.shift.value = 2;
+    dut.tt_um_neuron_uut.shift.value = 2;
     for i in range(50):
         await ClockCycles(dut.clk, 1)
 
-    dut.tt_neuron_uut.shift.value = 3;
+    dut.tt_um_neuron_uut.shift.value = 3;
     for i in range(50):
         await ClockCycles(dut.clk, 1)
 
-    dut.tt_neuron_uut.shift.value = 4;
+    dut.tt_um_neuron_uut.shift.value = 4;
     for i in range(50):
         await ClockCycles(dut.clk, 1)
 
-    dut.tt_neuron_uut.minus_teta.value = 0b0001;
-    dut.tt_neuron_uut.shift.value = 3;
+    dut.tt_um_neuron_uut.minus_teta.value = 0b0001;
+    dut.tt_um_neuron_uut.shift.value = 3;
     for i in range(100):
         await ClockCycles(dut.clk, 1)
 

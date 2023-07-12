@@ -52,8 +52,8 @@ documentation:
   inputs:               
     - input1
     - input2
-    - none
-    - none
+    - input3
+    - input4
     - none
     - none
     - none

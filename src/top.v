@@ -12,16 +12,17 @@ module tt_um_neuron (
 );
     wire reset = !rst_n;
 
-    localparam N_STAGES = 2;
+    localparam N_STAGES = 6;
     localparam INPUTS = 2**N_STAGES;
     localparam WEIGHTS = INPUTS;
     localparam OUTPUT_PRECISION = N_STAGES+2;
 
-    wire [INPUTS-1:0] x = ui_in[INPUTS-1:0];        // # inputs
+    //wire [INPUTS-1:0] x = ui_in[INPUTS-1:0];      // # inputs
     wire spike = uo_out[0];
     wire [OUTPUT_PRECISION-1:0] u_out =
                         uo_out[OUTPUT_PRECISION:1]; // output precision
 
+    reg [INPUTS-1: 0] x;                            // # inputs
     reg [WEIGHTS-1:0] w;                            // # weights
     reg [OUTPUT_PRECISION-1:0] previus_u;           // output precision
     reg [OUTPUT_PRECISION-1:0] minus_teta;          // output precision
@@ -42,10 +43,12 @@ module tt_um_neuron (
     always @(posedge clk) begin
         if (reset) begin
             w <= x; // load weights upon reset
+            x <= 0;
             shift <= 0;
             minus_teta <= -5;
             previus_u <= 0;
             was_spike <= 0;
+            //uio_oe = 0;
         end else begin
             was_spike <= spike;
             previus_u <= u_out;

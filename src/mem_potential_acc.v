@@ -23,6 +23,8 @@ module mem_potential_acc #(parameter n_stage = 6) (
     );
 
     // Assign u_out based on was_spike
-    assign u_out = (was_spike ? reset_membrane : accumulated_potential)[(n_stage+1):0];
+    assign u_out = (was_spike ?
+        reset_membrane[(n_stage+1):0] :
+        accumulated_potential[(n_stage+1):0]);
 endmodule
 

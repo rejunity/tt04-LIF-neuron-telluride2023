@@ -1,4 +1,6 @@
-`define UNROLL
+//`define UNROLL 
+// unrolled 32 synapses 722 cycles
+//          32 synapses 550 cycles
 
 module mulplier_accumulator #(parameter n_stage = 6) (
     input [(2**n_stage)-1:0] w,

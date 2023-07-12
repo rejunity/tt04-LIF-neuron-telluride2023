@@ -12,7 +12,7 @@ module tt_um_neuron (
 );
     wire reset = !rst_n;
 
-    localparam N_STAGES = 6;
+    localparam N_STAGES = 5;
     localparam INPUTS = 2**N_STAGES;
     localparam WEIGHTS = INPUTS;
     localparam OUTPUT_PRECISION = N_STAGES+2;

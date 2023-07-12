@@ -15,7 +15,7 @@ module tt_um_neuron (
     assign uio_oe = 0;
 
 `ifdef LARGE
-    localparam N_STAGES = 5;
+    localparam N_STAGES = 6;
 `else
     localparam N_STAGES = 2;
 `endif

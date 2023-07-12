@@ -1,9 +1,12 @@
+`define UNROLL
+
 module mulplier_accumulator #(parameter n_stage = 6) (
     input [(2**n_stage)-1:0] w,
     input [(2**n_stage)-1:0] x,
     output [(n_stage+1):0] y_out
 );
 
+`ifdef UNROLL
     wire [63:0] y_plus;
     wire [63:0] y_minus;
     wire [(n_stage+1):0] sum_plus;
@@ -144,20 +147,21 @@ module mulplier_accumulator #(parameter n_stage = 6) (
         y_minus[62]+
         y_minus[63];
 
-    assign y_out = y_plus - y_minus;
+    assign y_out = sum_plus - sum_minus;
+`else
 
+    wire [(2*(2**n_stage))-1:0] mult_out;
 
-    // wire [(2*(2**n_stage))-1:0] mult_out;
+    multiplier_stage #(n_stage) mult_uut (
+        .w(w),
+        .x(x),
+        .mult_out(mult_out)
+    );
 
-    // multiplier_stage #(n_stage) mult_uut (
-    //     .w(w),
-    //     .x(x),
-    //     .mult_out(mult_out)
-    // );
-
-    // adder_tree #(n_stage) adder_uut (
-    //     .wx(mult_out),
-    //     .y_out(y_out)
-    // );
+    adder_tree #(n_stage) adder_uut (
+        .wx(mult_out),
+        .y_out(y_out)
+    );
+`endif
 
 endmodule

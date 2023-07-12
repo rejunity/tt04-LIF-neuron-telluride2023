@@ -17,30 +17,32 @@ module decay_potential #(parameter n_stage = 10) (
                      0; // no decay
 
     // Calculate not_gamma_u
-    assign not_gamma_u = ~gamma_u;
+    // assign not_gamma_u = ~gamma_u;
 
-    // Calculate beta_u using full adder
-    genvar i;
-    generate
-        for (i=0; i<=n_stage+1; i=i+1) begin : adder_i
-            if (i == 0) begin : first_ha
-                full_adder first_fa_i (
-                    .A(u[i]),
-                    .B(not_gamma_u[i]),
-                    .Cin(1'b1),
-                    .S(beta_u[i]),
-                    .Cout(Cout[i])
-                );
-            end else begin : other_fa
-                full_adder other_fa_i (
-                    .A(u[i]),
-                    .B(not_gamma_u[i]),
-                    .Cin(Cout[i-1]),
-                    .S(beta_u[i]),
-                    .Cout(Cout[i])
-                );
-            end
-        end
-    endgenerate
+    assign beta_u = u - gamma_u;
+
+    // // Calculate beta_u using full adder
+    // genvar i;
+    // generate
+    //     for (i=0; i<=n_stage+1; i=i+1) begin : adder_i
+    //         if (i == 0) begin : first_ha
+    //             full_adder first_fa_i (
+    //                 .A(u[i]),
+    //                 .B(not_gamma_u[i]),
+    //                 .Cin(1'b1),
+    //                 .S(beta_u[i]),
+    //                 .Cout(Cout[i])
+    //             );
+    //         end else begin : other_fa
+    //             full_adder other_fa_i (
+    //                 .A(u[i]),
+    //                 .B(not_gamma_u[i]),
+    //                 .Cin(Cout[i-1]),
+    //                 .S(beta_u[i]),
+    //                 .Cout(Cout[i])
+    //             );
+    //         end
+    //     end
+    // endgenerate
 
 endmodule

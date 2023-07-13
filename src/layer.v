@@ -1,7 +1,7 @@
 module layer #(parameter n_stage = 8, parameter neuron_num = 64) (
     input [(2**n_stage)-1:0] x,
     input [(neuron_num*(2**n_stage))-1:0] w,
-    //input [(neuron_num*(2**n_stage))-1:0] connection_enabled,
+    input [(neuron_num*(2**n_stage))-1:0] connection_enabled,
     input [2:0] beta_shift,
     input [(n_stage+1):0] minus_teta,
     input [(4*neuron_num)-1:0] BN_factor,
@@ -18,7 +18,8 @@ module layer #(parameter n_stage = 8, parameter neuron_num = 64) (
         for (i = 0; i < neuron_num; i = i + 1) begin : neurons
             neuron_struct #(n_stage) neuron_i (
                 .w(w[(i+1)*(2**n_stage)-1 : i*(2**n_stage)]),
-                .x(x), //.x(connection_enabled ? x : 0),
+                // .x(x),
+                .x(connection_enabled[i*(2**n_stage)] & x),
                 .shift(beta_shift),
                 .minus_teta(minus_teta),
                 .BN_factor(BN_factor[(4*(i+1))-1 : i*4]),

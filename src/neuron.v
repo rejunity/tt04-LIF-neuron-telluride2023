@@ -6,6 +6,8 @@ module neuron #(parameter n_stage = 2) (
     input wire [(n_stage+1):0] previus_u,
     input wire [(n_stage+1):0] minus_teta,
     input wire was_spike,
+    input wire [3:0] BN_factor,
+    input wire [(n_stage+1):0] BN_addend,
     output wire [(n_stage+1):0] u_out,
     output wire is_spike
 );

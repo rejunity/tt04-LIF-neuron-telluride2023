@@ -64,10 +64,48 @@ module nn_system (
     wire [BN3_factor_offset-1:0] BN_factor;
     wire [BN3_addend_offset-1:0] BN_addend;
 
+    // wire [SIZE_LAYER_1*SIZE_LAYER_2-1:0] L1_out_a;
+    // wire [SIZE_LAYER_1*SIZE_LAYER_2-1:0] L1_out_b;
+    // wire [SIZE_LAYER_2*SIZE_LAYER_3-1:0] L2_out_a;
+    // wire [SIZE_LAYER_2*SIZE_LAYER_3-1:0] L2_out_b;
+    // wire [SIZE_LAYER_3-1:0] L3_out;
+    // layer l1 (.in(x), .out(L1_out_a));
+    // assign L1_out_b = CONNECTIONS_L12 & L1_out_a;
+    // layer l2 (.in(L1_out_b), .out(L2_out_a));
+    // assign L2_out_b = CONNECTIONS_L23 & L2_out_a;
+    // layer l3 (.in(L2_out_b), .out(L3_out));
+
+    reg [neurons_0-1:0] CONNECTIONS_0 [0:input_number-1];
+    reg [neurons_1-1:0] CONNECTIONS_1 [0:neurons_0-1];
+    reg [neurons_2-1:0] CONNECTIONS_2 [0:neurons_1-1];
+    initial
+    begin
+        $readmemb("connections_0.mem", CONNECTIONS_0);
+        $readmemb("connections_1.mem", CONNECTIONS_1);
+        $readmemb("connections_2.mem", CONNECTIONS_2);
+    end
+    wire [weights_0_number-1:0] connections_0;
+    wire [weights_1_number-1:0] connections_1;
+    wire [weights_2_number-1:0] connections_2;
+    generate
+        genvar i;
+        for (i = 0; i < input_number; i++) begin
+            assign connections_0[(i+1)*neurons_0-1:i*neurons_0] = CONNECTIONS_0[i];
+        end
+        for (i = 0; i < neurons_0; i++) begin
+            assign connections_1[(i+1)*neurons_1-1:i*neurons_1] = CONNECTIONS_1[i];
+        end
+        for (i = 0; i < neurons_1; i++) begin
+            assign connections_2[(i+1)*neurons_2-1:i*neurons_2] = CONNECTIONS_2[i];
+        end
+    endgenerate
+
+
+
     layer #($clog2(input_number), neurons_0) first_layer (
         .x(x),
         .w(w[w1_offset-1:w0_offset]),
-        //.s(NET_SPARSITY[w1_offset-1:w0_offset]),
+        .connection_enabled(connections_0),
         .beta_shift(beta_shift[beta1_offset-1:beta0_offset]),
         .minus_teta(minus_teta[teta1_offset-1:teta0_offset]),
         .BN_factor(BN_factor[BN1_factor_offset-1:BN0_factor_offset]),
@@ -81,7 +119,7 @@ module nn_system (
     layer #($clog2(neurons_0), neurons_1) second_layer (
         .x(spike_out_first_layer),
         .w(w[w2_offset-1:w1_offset]),
-        //.s(NET_SPARSITY[w2_offset-1:w1_offset]),
+        .connection_enabled(connections_1),
         .beta_shift(beta_shift[beta2_offset-1:beta1_offset]),
         .minus_teta(minus_teta[teta2_offset-1:teta1_offset]),
         .BN_factor(BN_factor[BN2_factor_offset-1:BN1_factor_offset]),
@@ -95,7 +133,7 @@ module nn_system (
     layer #($clog2(neurons_1), neurons_2) final_layer (
         .x(spike_out_second_layer),
         .w(w[w3_offset-1:w2_offset]),
-        //.s(NET_SPARSITY[w3_offset-1:w2_offset]),
+        .connection_enabled(connections_2),
         .beta_shift(beta_shift[beta3_offset-1:beta2_offset]),
         .minus_teta(minus_teta[teta3_offset-1:teta2_offset]),
         .BN_factor(BN_factor[BN3_factor_offset-1:BN2_factor_offset]),

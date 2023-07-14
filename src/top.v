@@ -1,4 +1,4 @@
-//`define LARGE_NEURON
+`define LARGE_NEURON
 
 module tt_um_neuron_net #(  parameter input_bits = 256,
                             parameter neurons_0 = 256,

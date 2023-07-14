@@ -108,7 +108,7 @@ module tt_um_neuron
         end else begin
             was_spike <= spike;
             previus_u <= u_out;
-`ifdef LARGE
+`ifdef LARGE_NEURON
             x <= { x[INPUTS-8-1:0], ui_in[7:0] };
 `else
             x <= ui_in[INPUTS-1:0];

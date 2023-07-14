@@ -14,9 +14,9 @@ module nn_system (
 );
 
     localparam input_number = 32;
-    localparam neurons_0 = 4;
-    localparam neurons_1 = 4;
-    localparam neurons_2 = 4;
+    localparam neurons_0 = 256;
+    localparam neurons_1 = 32;
+    localparam neurons_2 = 10;
 
     localparam weights_0_number = input_number*neurons_0;
     localparam weights_1_number = neurons_0*neurons_1;

@@ -62,8 +62,9 @@ module tt_um_neuron
     input  wire       rst_n     // reset_n - low to reset
 );
     wire reset = !rst_n;
-    assign uio_oe = 0;
-    assign uo_out[7:1] = 0;
+    assign uio_oe[7:0] = 8'b0000_0000;
+    assign uio_out[7:0] = 8'b0000_0000;
+    assign uo_out[7:1] = 7'b000_0000;
 
 `ifdef LARGE_NEURON
     localparam N_STAGES = 5;

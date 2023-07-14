@@ -17,9 +17,10 @@ module tt_um_neuron_net #(  parameter input_bits = 256,
 );
 
     wire reset = !rst_n;
-    assign uio_oe = 0;
-    assign uo_out[7:1] = 0;
-
+    assign uio_oe[7:0] = 8'b0000_0000;
+    assign uio_out[7:0] = 8'b0000_0000;
+    assign uo_out[7:1] = 7'b000_0000;
+    
     wire [7:0] inputs = ui_in[7:0];
     wire [1:0] nn_parameters = uio_in[1:0];
     wire fifo_w_ce = uio_in[2];

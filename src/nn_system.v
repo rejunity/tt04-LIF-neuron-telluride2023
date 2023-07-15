@@ -22,8 +22,6 @@ module nn_system (
     localparam weights_1_number = neurons_0*neurons_1;
     localparam weights_2_number = neurons_1*neurons_2;
     localparam total_weight_number = weights_0_number + weights_1_number + weights_2_number;
-    localparam total_teta_bits = $clog2(neurons_0)+1+$clog2(neurons_1)+1+$clog2(neurons_2)+1;
-    localparam total_BN_addend_bits = ($clog2(neurons_0)+1)*neurons_0+($clog2(neurons_1)+1)*neurons_1+($clog2(neurons_2)+1)*neurons_2;
     localparam total_neuron_number = neurons_0 + neurons_1 + neurons_2;
     localparam layer_number = 3;
 
@@ -55,10 +53,6 @@ module nn_system (
     wire [neurons_2-1:0] spike_out;
 
     wire [total_weight_number-1:0] w;
-    // wire [3*layer_number-1:0] beta_shift;
-    // wire [total_teta_bits-1:0] minus_teta;
-    // wire [4*total_neuron_number-1:0] BN_factor;
-    // wire [total_BN_addend_bits-1:0] BN_addend;
     wire [beta3_offset-1:0] beta_shift;
     wire [teta3_offset-1:0] minus_teta;
     wire [BN3_factor_offset-1:0] BN_factor;

@@ -3,10 +3,8 @@ module reg_1b (
     input clk,
     input rst_n, // active low reset
     input ce,
-    output q
+    output reg q
 );
-    reg q;
-
     always @(posedge clk) begin
         if (!rst_n) begin
             q <= 0;

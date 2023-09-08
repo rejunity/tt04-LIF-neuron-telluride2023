@@ -3,10 +3,8 @@ module reg_N #(parameter N = 16) (
     input clk,
     input rst_n, // active low reset
     input ce,
-    output [N-1:0] q
+    output reg [N-1:0] q
 );
-    reg [N-1:0] q;
-
     always @(posedge clk) begin
         if (!rst_n) begin
             q <= 0;

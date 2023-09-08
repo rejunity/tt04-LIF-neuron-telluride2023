@@ -9,9 +9,8 @@ module layer #(parameter n_stage = 8, parameter neuron_num = 64) (
     input clk,
     input rst_n,
     input ce,
-    output [(neuron_num-1):0] spike_out
+    output reg [(neuron_num-1):0] spike_out
 );
-    reg [neuron_num-1:0] spike_out;
 
     genvar i;
     generate

@@ -1,4 +1,4 @@
-`define LARGE_NEURON
+//`define LARGE_NEURON
 
 module tt_um_neuron_net #(  parameter input_bits = 256,
                             parameter neurons_0 = 256,
@@ -20,7 +20,7 @@ module tt_um_neuron_net #(  parameter input_bits = 256,
     assign uio_oe[7:0] = 8'b0000_0000;
     assign uio_out[7:0] = 8'b0000_0000;
     assign uo_out[7:1] = 7'b000_0000;
-    
+
     wire [7:0] inputs = ui_in[7:0];
     wire [1:0] nn_parameters = uio_in[1:0];
     wire fifo_w_ce = uio_in[2];
@@ -70,7 +70,7 @@ module tt_um_neuron
 `ifdef LARGE_NEURON
     localparam N_STAGES = 5;
 `else
-    localparam N_STAGES = 2;
+    localparam N_STAGES = 3;
 `endif
     localparam INPUTS = 2**N_STAGES;
     localparam WEIGHTS = INPUTS;

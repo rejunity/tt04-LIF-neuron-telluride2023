@@ -27,4 +27,3 @@ module mem_potential_acc #(parameter n_stage = 6) (
         reset_membrane[(n_stage+1):0] :
         accumulated_potential[(n_stage+1):0]);
 endmodule
-

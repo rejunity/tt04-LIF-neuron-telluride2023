@@ -11,6 +11,7 @@ Binarized Leaky Integrate and Fire (LIF) neuron supports binary {0/1} inputs and
 Inputs are multiplied by weights and accumulated on the internal membrane. Membrane is exponentially decaying with every clock cycle.
 Once membrane value (potential) reaches threshold, neuron spikes and membrane value is decreased.
 
+Something along the line of this pseudocode:
 ```
 membrane += inputs * weights
 membrane *= decay_factor

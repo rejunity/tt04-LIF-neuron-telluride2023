@@ -17,14 +17,16 @@ module tb ();
     end
 
     // wire up the inputs and outputs
+    wire [7:0] ui_in;
     wire [7:0] uo_out;
+    wire [7:0] uio_in;
     wire [7:0] uio_out;
     wire [7:0] uio_oe;
     wire clk;
     wire rst_n;
     wire ena;
 
-    tt_um_rejunity_telluride2023_neuron tt_um_rej_telluride2023_neuron_uut 
+    tt_um_rejunity_telluride2023_neuron tt_um_rejunity_telluride2023_neuron_uut 
     (
         // include power ports for the Gate Level test
         `ifdef GL_TEST

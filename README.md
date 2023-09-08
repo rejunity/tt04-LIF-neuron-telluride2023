@@ -1,35 +1,27 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
-# What is Tiny Tapeout?
+![](paolas_design_notes/1.pdf)
 
-TinyTapeout is an educational project that aims to make it easier and cheaper than ever to get your digital designs manufactured on a real chip!
+# LIF Neuron from Telluride Neuromorphic Workshop 2023
 
-Go to https://tinytapeout.com for instructions!
+This is a standalone test for a Binarized Leaky Integrate and Fire neuron. The neuron itself is part of the Huge Neural Network On-Chip experimental design from Telluride Neuromorphic Workshop 2023.
 
-## How to change the Wokwi project
+## Hot it works
+Binarized Leaky Integrate and Fire (LIF) neuron supports binary {0/1} inputs and {-1/1} binarized weights.
+Inputs are multiplied by weights and accumulated on the internal membrane. Membrane is exponentially decaying with every clock cycle.
+Once membrane value (potential) reaches threshold, neuron spikes and membrane value is decreased.
 
-Edit the [info.yaml](info.yaml) and change the wokwi_id to match your project.
+```
+membrane += inputs * weights
+membrane *= decay_factor
+membrane -= threshold if membrane > threshold
+spike = 1 if membrane > threshold
+```
 
-## How to enable the GitHub actions to build the ASIC files
+## Collaborators
+  - Paola Vitolo
+  - Andrew Wabnitz
+  - ReJ aka Renaldas Zioma
 
-Please see the instructions for:
-
-- [Enabling GitHub Actions](https://tinytapeout.com/faq/#when-i-commit-my-change-the-gds-action-isnt-running)
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
-
-## How does it work?
-
-When you edit the info.yaml to choose a different ID, the [GitHub Action](.github/workflows/gds.yaml) will fetch the digital netlist of your design from Wokwi.
-
-After that, the action uses the open source ASIC tool called [OpenLane](https://www.zerotoasiccourse.com/terminology/openlane/) to build the files needed to fabricate an ASIC.
-
-## Resources
-
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://discord.gg/rPK2nSjxy8)
-
-## What next?
-
-- Share your GDS on Twitter, tag it [#tinytapeout](https://twitter.com/hashtag/tinytapeout?src=hashtag_click) and [link me](https://twitter.com/matthewvenn)!
+## TODO
+  - Share your GDS on Twitter, tag it [#tinytapeout](https://twitter.com/hashtag/tinytapeout?src=hashtag_click) and [link me](https://twitter.com/matthewvenn)!

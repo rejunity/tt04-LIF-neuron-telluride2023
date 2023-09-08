@@ -1,10 +1,10 @@
 ![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg)
 
-![](paolas_design_notes/1.pdf)
-
 # LIF Neuron from Telluride Neuromorphic Workshop 2023
 
 This is a standalone test for a Binarized Leaky Integrate and Fire neuron. The neuron itself is part of the Huge Neural Network On-Chip experimental design from Telluride Neuromorphic Workshop 2023.
+
+![](paolas_design_notes/summary.png)
 
 ## Hot it works
 Binarized Leaky Integrate and Fire (LIF) neuron supports binary {0/1} inputs and {-1/1} binarized weights.

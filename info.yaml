@@ -39,7 +39,7 @@ yaml_version: 4
 #
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
-  author:       "Paola Vitolo, ReJ aka Renaldas Zioma"
+  author:       "Paola Vitolo, Andrew Wabnitz, ReJ aka Renaldas Zioma"
   title:        "LIF Neuron, Telluride 2023"
   language:     "Verilog"
   description:  "Standalone test for a Binarized Leaky Integrate and Fire neuron that is part of the larger experimental design from Telluride Neuromorphic Workshop 2023"

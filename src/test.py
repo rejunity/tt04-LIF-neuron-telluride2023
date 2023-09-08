@@ -32,24 +32,26 @@ async def test_neuron(dut):
     for i in range(12):
         await ClockCycles(dut.clk, 1)
 
-    dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 1;
-    for i in range(50):
-        await ClockCycles(dut.clk, 1)
+    # figure out how enable this part only in `ifdef GL_TEST
+    if False: # not GL_TEST:
+        dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 1;
+        for i in range(50):
+            await ClockCycles(dut.clk, 1)
 
-    dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 2;
-    for i in range(50):
-        await ClockCycles(dut.clk, 1)
+        dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 2;
+        for i in range(50):
+            await ClockCycles(dut.clk, 1)
 
-    dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 3;
-    for i in range(50):
-        await ClockCycles(dut.clk, 1)
+        dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 3;
+        for i in range(50):
+            await ClockCycles(dut.clk, 1)
 
-    dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 4;
-    for i in range(50):
-        await ClockCycles(dut.clk, 1)
+        dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 4;
+        for i in range(50):
+            await ClockCycles(dut.clk, 1)
 
-    dut.tt_um_rejunity_telluride2023_neuron_uut.minus_teta.value = 0b0001;
-    dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 3;
-    for i in range(100):
-        await ClockCycles(dut.clk, 1)
+        dut.tt_um_rejunity_telluride2023_neuron_uut.minus_teta.value = 0b0001;
+        dut.tt_um_rejunity_telluride2023_neuron_uut.shift.value = 3;
+        for i in range(100):
+            await ClockCycles(dut.clk, 1)
 

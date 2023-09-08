@@ -18,9 +18,7 @@ module tb ();
 
     // wire up the inputs and outputs
     wire [7:0] uo_out;
-    wire [7:0] ui_in;
     wire [7:0] uio_out;
-    wire [7:0] uio_in;
     wire [7:0] uio_oe;
     wire clk;
     wire rst_n;
@@ -28,11 +26,11 @@ module tb ();
 
     tt_um_rejunity_telluride2023_neuron tt_um_rej_telluride2023_neuron_uut 
     (
+        // include power ports for the Gate Level test
         `ifdef GL_TEST
-            .vccd1( 1'b1),
-            .vssd1( 1'b0),
+            .VPWR( 1'b1),
+            .VGND( 1'b0),
         `endif
-        //.ui_in      (8'b1111_1111),    // Dedicated inputs
         .ui_in      (ui_in),    // Dedicated inputs
         .uo_out     (uo_out),   // Dedicated outputs
         .uio_in     (uio_in),   // IOs: Input path

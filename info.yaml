@@ -18,14 +18,14 @@ project:
     - nbit_adder.v
     - spike_generator.v
     - batch_normalization.v
-    - neuron_struct.v
-    - layer.v
-    - neural_network.v
-    - nn_system.v
-    - reg_1b.v
-    - reg_N.v
-    - sipo.v
     - top.v
+  #   - neural_network.v
+  #   - neuron_struct.v
+  #   - layer.v
+  #   - nn_system.v
+  #   - sipo.v
+  #   - reg_1b.v
+  #   - reg_N.v
   top_module:  "tt_um_rejunity_telluride2023_neuron"      # put the name of your top module here, make it unique by prepending your github username
 
 # How many tiles your design occupies? A single tile is about 167x108 uM.

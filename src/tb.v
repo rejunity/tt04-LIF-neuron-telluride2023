@@ -26,8 +26,7 @@ module tb ();
     wire rst_n;
     wire ena;
 
-    tt_um_neuron tt_um_neuron_uut 
-    // tt_um_neuron_net #(32,4,4,4) tt_um_neuron_net_uut
+    tt_um_rejunity_telluride2023_neuron tt_um_rej_telluride2023_neuron_uut 
     (
         `ifdef GL_TEST
             .vccd1( 1'b1),

@@ -39,40 +39,37 @@ yaml_version: 4
 #
 # Here is a great example: https://github.com/davidsiaw/tt02-davidsiaw-stackcalc/blob/38c5647f83aad2aec675d566aa3d67b98f0aac81/info.yaml
 documentation: 
-  author:       "Paola, ReJ"
-  title:        "LIF Neuron"
+  author:       "Paola Vitolo, ReJ aka Renaldas Zioma"
+  title:        "LIF Neuron, Telluride 2023"
   language:     "Verilog"
-  description:  "Implement a leaky integrate and fire neuron."
+  description:  "Standalone test for a Binarized Leaky Integrate and Fire neuron that is part of the larger experimental design from Telluride Neuromorphic Workshop 2023"
 
 # Longer description of how the project works. You can use standard markdown format.
   how_it_works: |
-      Uses a set of registers to divide the clock, and then some combinational logic
-      to convert from binary to decimal for the display.
+      Binarized Leaky Integrate and Fire (LIF) neuron supports binary [0/1] inputs and [-1/1] binarized weights.
+      Inputs are multiplied by weights and accumulated on the internal membrane. Membrane is exponentially decaying with every clock cycle.
+      Once membrane value (potential) reaches threshold, neuron spikes and membrane value is decreased.
 
-      Puts the bottom 8 bits of the counter on the bidirectional outputs.
-
-      With all the inputs set to 0, the internal 24 bit compare is set to 10,000,000. This means the
-      counter will increment by one each second.
-
-      If any inputs are non zero, then the input will be used as an bits 11 to 18 of the 24 bit compare register.
-      Example: setting the inputs to 00010000 will program 16384 into the compare register.
-      With a 10MHz clock the counter will increment ~610 times per second.
+          membrane += inputs * weights
+          membrane *= decay_factor
+          membrane -= threshold if membrane > threshold
+          spike = 1 if membrane > threshold
 
 # Instructions on how someone could test your project, include things like what buttons do what and how to set the clock if needed
   how_to_test:  |
-      After reset, the counter should increase by one every second with a 10MHz input clock.
-      Experiment by changing the inputs to change the counting speed.
+      While reset is held high, input values are assigned to weights
+      After reset cycle neuron is active. The only output of the neuron is the binary spike!
 
 # A description of what the inputs do (e.g. red button, SPI CLK, SPI MOSI, etc).
   inputs:               
-    - input1
-    - input2
-    - input3
-    - input4
-    - input5
-    - input6
-    - input7
-    - input8
+    - input1 / weight1
+    - input2 / weight2
+    - input3 / weight3
+    - input4 / weight4
+    - input5 / weight5
+    - input6 / weight6
+    - input7 / weight7
+    - input8 / weight8
 # A description of what the outputs do (e.g. status LED, SPI MISO, etc)
   outputs:
     - spike

@@ -4,13 +4,15 @@
 
 This is a standalone test for a Binarized Leaky Integrate and Fire (BLIF) neuron implemented in silicon. The neuron was developed during the [Telluride Neuromorphic Workshop 2023](https://sites.google.com/view/telluride-2023/home) and is part of a larger experiment ["The Huge Neural Network On-Chip"](https://github.com/rejunity/tt05-snn).
 
-The main design goal behind BLIF neuron is to minimize the silicon area. The BLIF neuron with 8 synapses:
-* 191 logic gates
-* 0.003mm^2 on [Sky130 nm](https://skywater-pdk.readthedocs.io/en/main/)
+The design goals behind BLIF neuron were to **minimize the silicon area** and to use FOSS design process.
 
-In other words 300 neurons and 2400 synapses could fit in a 1 square millimeter on [Sky130 nm](https://skywater-pdk.readthedocs.io/en/main/) process.
+The BLIF neuron with 8 synapses
+* consits of 191 logic gates and
+* covers 0.003 square millimeters using [Sky130 nm](https://skywater-pdk.readthedocs.io/en/main/)
 
-![](paolas_design_notes/summary.png)
+In other words 300 neurons and 2400 synapses could fit in 1 square millimeter on [Sky130 nm](https://skywater-pdk.readthedocs.io/en/main/) process.
+
+![](docs/paolas_design_notes_summary.png)
 
 ## Hot it works
 
@@ -26,17 +28,22 @@ membrane -= threshold if membrane > threshold
 
 ```
 
+
+
 ## ASIC tapeout
 
 Binarized Leaky Integrate and Fire (BLIF) neuron was tapedout on [FOSS 130nm Production process](https://skywater-pdk.readthedocs.io/en/main/) via [Tiny Tapeout](https://tinytapeout.com/runs/tt04/) initiative.
 
+### Testing board with the BLIF neuron chip
+![](docs/TinyTapeou04_board.jpg)
 
+### Closeup of the QFN64 130nm chip with the BLIF neuron
+![](docs/TinyTapeou04_chip.jpg)
 
-
-## Collaborators
-  - Paola Vitolo
-  - Andrew Wabnitz
+# The team
+  - Dr. Paola Vitolo
+  - Dr. Andrew Wabnitz
   - ReJ aka Renaldas Zioma
 
-## Telluride topic Leader
-  - Jason Esgharhian
+# Topic Leader
+  - [Prof. Jason Eshraghian](https://ncg.ucsc.edu/jason-eshraghian-bio/)

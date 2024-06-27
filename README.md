@@ -4,8 +4,13 @@
 
 This is a standalone test for a Binarized Leaky Integrate and Fire (BLIF) neuron implemented in silicon. The neuron was developed during the [Telluride Neuromorphic Workshop 2023](https://sites.google.com/view/telluride-2023/home) and is part of a larger experiment ["The Huge Neural Network On-Chip"](https://github.com/rejunity/tt05-snn).
 
-The design goals behind BLIF neuron were to **minimize the silicon area** and to use FOSS design process.
+## Design goals
+The design goals behind BLIF neuron were:
+1) to **minimize the silicon area**
+2) to use FOSS design process
+3) **fabricate the actual silicon chip** for the final testing
 
+## Results
 The BLIF neuron with 8 synapses
 * consits of 191 logic gates and
 * covers 0.003 square millimeters using [Sky130 nm](https://skywater-pdk.readthedocs.io/en/main/)
@@ -17,6 +22,7 @@ In other words 300 neurons and 2400 synapses could fit in 1 square millimeter on
 ## Hot it works
 
 Binarized Leaky Integrate and Fire (BLIF) neuron supports binary {0/1} inputs and {-1/1} binarized weights.
+
 Inputs are multiplied by weights and accumulated on the internal membrane. Membrane is exponentially decaying with every clock cycle.
 Once membrane value (potential) reaches threshold, neuron spikes and membrane value is decreased.
 
@@ -28,6 +34,12 @@ membrane -= threshold if membrane > threshold
 
 ```
 
+## BLIF neuron layout
+
+
+![](docs/Telluride_LIF_neuron_GDS_annotated.png)
+
+![](docs/Telluride_LIF_neuron_silicon_3D.png)
 
 
 ## ASIC tapeout

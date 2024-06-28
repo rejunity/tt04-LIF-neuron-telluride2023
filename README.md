@@ -44,7 +44,7 @@ membrane -= threshold if membrane > threshold
 
 ## ASIC tapeout
 
-Binarized Leaky Integrate and Fire (BLIF) neuron was tapedout on [FOSS 130nm Production process](https://skywater-pdk.readthedocs.io/en/main/) via [Tiny Tapeout](https://tinytapeout.com/runs/tt04/) initiative.
+Binarized Leaky Integrate and Fire (BLIF) neuron was tapedout on [FOSS 130nm Production process](https://skywater-pdk.readthedocs.io/en/main/) via [Tiny Tapeout](https://tinytapeout.com/runs/tt04/) initiative, project [#359](https://tinytapeout.com/runs/tt04/359/).
 
 ### Testing board with the BLIF neuron chip
 ![](docs/TinyTapeou04_board.jpg)
